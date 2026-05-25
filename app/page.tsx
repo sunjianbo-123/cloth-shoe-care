@@ -120,6 +120,12 @@ const storeDetails = [
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isToastVisible, setIsToastVisible] = useState(false);
+  const defaultArrivalAt = (() => {
+    const date = new Date();
+    date.setHours(9, 0, 0, 0);
+    const timezoneOffsetMs = date.getTimezoneOffset() * 60 * 1000;
+    return new Date(date.getTime() - timezoneOffsetMs).toISOString().slice(0, 16);
+  })();
 
   function closeMenu() {
     setIsMenuOpen(false);
@@ -322,8 +328,8 @@ export default function Home() {
                       </div>
                     </fieldset>
                     <label>
-                      期望时间
-                      <input type="date" name="date" required />
+                      期望到店日期
+                      <input type="datetime-local" name="date" required defaultValue={defaultArrivalAt} />
                     </label>
                   </div>
                   <label>
