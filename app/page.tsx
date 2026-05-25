@@ -273,13 +273,19 @@ export default function Home() {
                     </select>
                   </label>
                   <div className="form-row">
-                    <label>
-                      取送方式
-                      <select name="pickup" required defaultValue="到店送洗">
-                        <option>到店送洗</option>
-                        <option>同城取送</option>
-                      </select>
-                    </label>
+                    <fieldset className="delivery-field">
+                      <legend>取送方式</legend>
+                      <div className="delivery-options">
+                        <label className="delivery-option">
+                          <input type="radio" name="pickup" value="上门取货" required />
+                          <span>上门取货</span>
+                        </label>
+                        <label className="delivery-option">
+                          <input type="radio" name="pickup" value="到店送洗" defaultChecked required />
+                          <span>到店送洗</span>
+                        </label>
+                      </div>
+                    </fieldset>
                     <label>
                       期望时间
                       <input type="date" name="date" required />

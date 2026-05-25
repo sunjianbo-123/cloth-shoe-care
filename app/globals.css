@@ -625,6 +625,61 @@ textarea:focus {
   gap: 12px;
 }
 
+.delivery-field {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.delivery-field legend {
+  margin-bottom: 7px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.delivery-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.delivery-option {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.delivery-option input {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border-radius: 50%;
+  accent-color: var(--green);
+}
+
+.delivery-option span {
+  min-width: 0;
+  color: inherit;
+  font-size: 14px;
+}
+
+.delivery-option:has(input:checked) {
+  border-color: var(--green);
+  background: #eef6f1;
+  color: var(--green-dark);
+  box-shadow: 0 0 0 3px rgba(28, 107, 81, .09);
+}
+
 .gallery {
   padding-top: 0;
 }
