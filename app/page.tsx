@@ -82,6 +82,20 @@ const reviews = [
   ["上门取送比较省事，窗帘拆洗后封装送回，家里没有洗后潮味。", "王女士 / 家纺除螨"],
 ];
 
+const storeHighlights = [
+  ["今日营业", "09:30-21:00", "到店急件建议提前预约"],
+  ["免费取送", "3 公里内", "10:00-20:30 可约上门"],
+  ["到店位置", "东门底商", "大件家纺可短暂停靠"],
+];
+
+const storeDetails = [
+  ["门店地址", "长春市南关区太原东街 116 号嘉柏湾小区东门底商"],
+  ["联系电话", "0431-6888 9012"],
+  ["营业时间", "周一至周日 09:30-21:00"],
+  ["取送范围", "门店 3 公里内免费取送，超出范围按距离确认费用"],
+  ["到店提示", "导航搜索“嘉柏湾小区东门”，贵重件到店可现场确认洗护方案"],
+];
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isToastVisible, setIsToastVisible] = useState(false);
@@ -339,17 +353,42 @@ export default function Home() {
           <div className="section-inner location-layout">
             <div className="info-panel">
               <p className="kicker">Visit</p>
-              <h2>到店或预约取送都可以。</h2>
-              <h3>净履衣橱洗护店</h3>
+              <h2>门店信息清楚，取送更省心。</h2>
+              <div className="store-title">
+                <div>
+                  <h3>净履衣橱洗护店</h3>
+                  <p>衣物、鞋履、皮具、家纺一站式洗护</p>
+                </div>
+                <span>每日营业</span>
+              </div>
+              <div className="store-highlights" aria-label="门店服务摘要">
+                {storeHighlights.map(([label, value, detail]) => (
+                  <div className="store-highlight" key={label}>
+                    <span>{label}</span>
+                    <strong>{value}</strong>
+                    <small>{detail}</small>
+                  </div>
+                ))}
+              </div>
               <ul className="info-list">
-                <li><strong>地址</strong>长春市南关区太原东街 116 号嘉柏湾小区</li>
-                <li><strong>营业时间</strong>周一至周日 09:30-21:00</li>
-                <li><strong>联系电话</strong>021-6888 9012</li>
-                <li><strong>取送范围</strong>门店 3 公里内免费，超出范围按距离计费</li>
+                {storeDetails.map(([label, value]) => (
+                  <li key={label}>
+                    <strong>{label}</strong>
+                    <span>{value}</span>
+                  </li>
+                ))}
               </ul>
+              <div className="store-actions" aria-label="门店快捷操作">
+                <a className="btn btn-primary" href="tel:043168889012">电话咨询</a>
+                <a className="btn btn-outline" href="#booking">预约取送</a>
+              </div>
             </div>
             <div className="map-frame">
               <img src="/assets/location-map-ai.png" alt="门店位于长春市南关区太原东街116号嘉柏湾小区，地图用红色箭头标出嘉柏湾位置" />
+              <div className="map-card">
+                <strong>嘉柏湾小区东门</strong>
+                <span>太原东街 116 号</span>
+              </div>
             </div>
           </div>
         </section>
@@ -358,7 +397,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="footer-inner">
           <span><strong>净履衣橱</strong> | 衣物、鞋履、皮具、家纺专业洗护</span>
-          <span>沪ICP备示例号 · 支持企业团洗与长期托管</span>
+          <span>吉ICP备示例号 · 支持企业团洗与长期托管</span>
         </div>
       </footer>
 
