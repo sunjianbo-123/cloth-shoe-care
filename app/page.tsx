@@ -76,10 +76,31 @@ const galleryItems = [
   },
 ];
 
+const reviewStats = [
+  ["4.9", "近 30 天到店评分"],
+  ["82%", "复购客户占比"],
+  ["1,200+", "累计洗护件数"],
+];
+
 const reviews = [
-  ["白色运动鞋边缘发黄处理得很干净，取回时鞋型也撑好了，不是软塌塌的一双。", "陈先生 / 鞋履清洁"],
-  ["羊绒大衣洗完没有变硬，门店提前说明了袖口旧磨损不能完全恢复，沟通很清楚。", "周女士 / 高端衣物护理"],
-  ["上门取送比较省事，窗帘拆洗后封装送回，家里没有洗后潮味。", "王女士 / 家纺除螨"],
+  {
+    body: "白色运动鞋边缘发黄处理得很干净，取回时鞋型也撑好了，不是软塌塌的一双。",
+    reviewer: "陈先生",
+    service: "鞋履清洁",
+    detail: "同城取送 · 2 双球鞋",
+  },
+  {
+    body: "羊绒大衣洗完没有变硬，门店提前说明了袖口旧磨损不能完全恢复，沟通很清楚。",
+    reviewer: "周女士",
+    service: "高端衣物护理",
+    detail: "到店送洗 · 羊绒大衣",
+  },
+  {
+    body: "上门取送比较省事，窗帘拆洗后封装送回，家里没有洗后潮味。",
+    reviewer: "王女士",
+    service: "家纺除螨",
+    detail: "上门取送 · 客厅窗帘",
+  },
 ];
 
 const storeHighlights = [
@@ -329,20 +350,37 @@ export default function Home() {
 
         <section className="reviews">
           <div className="section-inner">
-            <div className="section-heading">
-              <div>
-                <p className="kicker">Reviews</p>
-                <h2>适合日常复购，也能处理心疼的贵重件。</h2>
+            <div className="reviews-header">
+              <div className="section-heading reviews-heading">
+                <div>
+                  <p className="kicker">Reviews</p>
+                  <h2>适合日常复购，也能处理心疼的贵重件。</h2>
+                </div>
+                <p>门店保留每件物品的洗护记录，复洗时能延续上次的材质判断和护理方式。</p>
               </div>
-              <p>门店保留每件物品的洗护记录，复洗时能延续上次的材质判断和护理方式。</p>
+
+              <div className="review-score" aria-label="客户评价数据">
+                {reviewStats.map(([value, label]) => (
+                  <div className="review-stat" key={label}>
+                    <strong>{value}</strong>
+                    <span>{label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="review-grid">
-              {reviews.map(([body, reviewer]) => (
-                <article className="review-card" key={reviewer}>
-                  <div className="stars" aria-label="五星评价">★★★★★</div>
-                  <p>{body}</p>
-                  <div className="reviewer">{reviewer}</div>
+              {reviews.map((review) => (
+                <article className="review-card" key={review.reviewer}>
+                  <div className="review-card-top">
+                    <div className="stars" aria-label="五星评价">★★★★★</div>
+                    <span>{review.service}</span>
+                  </div>
+                  <p>{review.body}</p>
+                  <div className="reviewer">
+                    <span>{review.reviewer}</span>
+                    <small>{review.detail}</small>
+                  </div>
                 </article>
               ))}
             </div>
